@@ -1,0 +1,34 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'ca.concordia.alexa'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/com.amazon.alexa/alexa-skills-kit
+	compile group: 'com.amazon.alexa', name: 'alexa-skills-kit', version: '1.8.1'
+	compile('ch.qos.logback:logback-classic:1.1.7') {
+        exclude group: 'org.slf4j', module: 'slf4j-api' //by both name and group
+    }
+	
+}
